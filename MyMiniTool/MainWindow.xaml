@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyMiniTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MyMiniTool" Height="350" Width="525" ResizeMode="NoResize">
+
     <Grid>
-        
+        <TabControl x:Name="tabControl" Margin="0,0,0,30">
+            <TabItem Header="網路分享">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="SSID" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"></TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="SSIDTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10"></TextBox>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"></TextBlock>
+                    <PasswordBox Grid.Row="1" Grid.Column="1" Name="WifiPasswordPasswordBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10" MaxLength="10" PasswordChar="*"/>
+                    <Button Grid.Row="2" Grid.Column="1" Name="StartWifiSharingButton" Content="開始網路分享" Margin="10,10,10,10" Click="StartWifiSharingButton_Click"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="自動關機">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StatusBar Height="30" VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="StatusMessageTextBlock" Text="Ready"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
+    
 </Window>
