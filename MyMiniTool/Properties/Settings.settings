@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MyMiniTool.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WifiSSID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Shark</Value>
+    </Setting>
+    <Setting Name="WifiPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">uccujxcode</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

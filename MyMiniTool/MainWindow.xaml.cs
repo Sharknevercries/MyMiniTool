@@ -23,12 +23,22 @@ namespace MyMiniTool
         private const string NETSH = "netsh.exe";
         private const string WIFI_SHARING_SETTING_CMD = "wlan set hostednetwork mode=allow ssid={0} key={1}";
         private const string WIFI_SHARING_START_CMD = "wlan start hostednetwork";
+        private const string WIFI_SHARING_STOP_CMD = "wlan stop hostednetwork";
         private const int WIFI_PASSWORD_LENGTH_MIN = 8;
         private const int WIFI_PASSWORD_LENGTH_MAX = 63;
+
 
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadConfig();
+        }
+
+        private void LoadConfig()
+        {
+            WifiSSIDTextBox.Text = Properties.Settings.Default.WifiSSID;
+            WifiPasswordPasswordBox.Password = Properties.Settings.Default.WifiPassword;
         }
 
         private bool IsWifiSSIDLegal(string ssid)
@@ -65,7 +75,7 @@ namespace MyMiniTool
 
         private void StartWifiSharingButton_Click(object sender, RoutedEventArgs e)
         {
-            string ssid = SSIDTextBox.Text;
+            string ssid = WifiSSIDTextBox.Text;
             string password = WifiPasswordPasswordBox.Password;
 
             if (!IsWifiSSIDLegal(ssid))
@@ -80,16 +90,33 @@ namespace MyMiniTool
             }
             else
             {
-                TaskScheduler context = TaskScheduler.FromCurrentSynchronizationContext();
-                
-                Task task = Task.Factory.StartNew(() => SetWifiSharing(ssid, password))
-                                        .ContinueWith(t => StartWifiSharing())
-                                        .ContinueWith(t =>
-                                        {
-                                            StatusMessageTextBlock.Text = "已成功開啟網路分享";
-                                        },
-                                        System.Threading.CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, context);
+                SetWifiSharing(ssid, password);
+                StartWifiSharing();
+
+                StatusMessageTextBlock.Text = "已成功開啟網路分享";
             }
+        }
+
+        private void StopWifiSharingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var stopProc = new System.Diagnostics.Process();
+            stopProc.StartInfo.FileName = NETSH;
+            stopProc.StartInfo.Arguments = WIFI_SHARING_STOP_CMD;
+            stopProc.StartInfo.UseShellExecute = false;
+            stopProc.StartInfo.RedirectStandardOutput = true;
+            stopProc.StartInfo.CreateNoWindow = true;
+            stopProc.Start();
+
+            StatusMessageTextBlock.Text = "已成功關閉網路分享";
+        }
+
+        private void SaveWifiSharingConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.WifiSSID = WifiSSIDTextBox.Text;
+            Properties.Settings.Default.WifiPassword = WifiPasswordPasswordBox.Password;
+            Properties.Settings.Default.Save();
+
+            StatusMessageTextBlock.Text = "已成功儲存分享設定";
         }
     }
 }

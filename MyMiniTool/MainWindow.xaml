@@ -21,10 +21,20 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="SSID" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"></TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="SSIDTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="WifiSSIDTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10"></TextBox>
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"></TextBlock>
                     <PasswordBox Grid.Row="1" Grid.Column="1" Name="WifiPasswordPasswordBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10" MaxLength="10" PasswordChar="*"/>
-                    <Button Grid.Row="2" Grid.Column="1" Name="StartWifiSharingButton" Content="開始網路分享" Margin="10,10,10,10" Click="StartWifiSharingButton_Click"></Button>
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Name="SaveWifiSharingConfigButton" Content="儲存分享設定" Margin="10" Click="SaveWifiSharingConfigButton_Click"></Button>
+                        <Button Grid.Column="1" Name="StopWifiSharingButton" Content="停止網路分享" Margin="10" Click="StopWifiSharingButton_Click"></Button>
+                        <Button Grid.Column="2" Name="StartWifiSharingButton" Content="開始網路分享" Margin="10" Click="StartWifiSharingButton_Click"></Button>
+                    </Grid>
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="自動關機">
