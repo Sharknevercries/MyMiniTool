@@ -11,17 +11,16 @@
         
     </Window.Resources>
 
-    <Grid>
-        <TabControl Margin="0,0,0,30">
+    <StackPanel>
+        <TabControl Height="315">
             <TabItem Header="網路分享">
                 <local:WifiSharing x:Name="WifiSharing"/>
             </TabItem>
         </TabControl>
-        <StatusBar Height="30" VerticalAlignment="Bottom">
+        <StatusBar Height="30" DockPanel.Dock="Bottom">
             <StatusBarItem>
                 <TextBlock Name="StatusMessageTextBlock">就緒</TextBlock>
             </StatusBarItem>
         </StatusBar>
-    </Grid>
-
+    </StackPanel>
 </Window>

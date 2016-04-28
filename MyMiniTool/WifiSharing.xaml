@@ -14,60 +14,77 @@
             <BitmapImage x:Key="StoppingShare" UriSource="Resource/Image/Offline-32.png"/>
             <BitmapImage x:Key="Save" UriSource="Resource/Image/Save-32.png"/>
             <BitmapImage x:Key="WiFi" UriSource="Resource/Image/Wi-Fi-32.png"/>
+
+            <Style x:Key="IconStyle" TargetType="Image">
+                <Setter Property="Width" Value="32"></Setter>
+                <Setter Property="Height" Value="32"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+            <Style x:Key="FunctionButtonStyle" TargetType="Button">
+                <Setter Property="Margin" Value="10"></Setter>
+                <Style.Resources>
+                    <Style TargetType="Image" BasedOn="{StaticResource IconStyle}"></Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        <Setter Property="FontSize" Value="16"></Setter>
+                        <Setter Property="Margin" Value="5"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-        <Grid Background="#FFE5E5E5">
+    <Grid Background="#FFE5E5E5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{StaticResource WiFi}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="32" Height="32" Margin="10"></Image>
-                <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="24" HorizontalAlignment="Right" Margin="10"><Run Text="SSID" /></TextBlock>
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{StaticResource Key}" Width="32" Height="32" Margin="10"></Image>
-                <TextBlock Grid.Column="1" Text="Password" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24"></TextBlock>
-            </Grid>
-            <TextBox Grid.Row="0" Grid.Column="1" Name="WifiSSIDTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10"></TextBox>
-            <PasswordBox Grid.Row="1" Grid.Column="1" Name="WifiPasswordPasswordBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10" MaxLength="10" PasswordChar="*"/>
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="SaveWifiSharingConfigButton" Margin="10" Click="SaveWifiSharingConfigButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource Save}" Width="30" Margin="5"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="16" Margin="5">儲存分享設定</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="1" Name="StopWifiSharingButton" Margin="10" Click="StopWifiSharingButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource StoppingShare}" Width="30" Margin="5"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="16" Margin="5">停止網路分享</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="2" Name="StartWifiSharingButton" Margin="10" Click="StartWifiSharingButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource Share}" Width="30" Margin="5"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="16" Margin="5">開始網路分享</TextBlock>
-                    </StackPanel>
-                </Button>
-            </Grid>
+            <Image Grid.Column="0" Source="{StaticResource WiFi}" Style="{StaticResource IconStyle}"></Image>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="24" HorizontalAlignment="Right" Margin="10"><Run Text="SSID" /></TextBlock>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{StaticResource Key}" Style="{StaticResource IconStyle}"></Image>
+            <TextBlock Grid.Column="1" Text="Password" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24"></TextBlock>
+        </Grid>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="WifiSSIDTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10"></TextBox>
+        <PasswordBox Grid.Row="1" Grid.Column="1" Name="WifiPasswordPasswordBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="32" Margin="10" MaxLength="10" PasswordChar="*"/>
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="SaveWifiSharingConfigButton" Click="SaveWifiSharingConfigButton_Click" Style="{StaticResource FunctionButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource Save}"/>
+                    <TextBlock>儲存分享設定</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" Name="StopWifiSharingButton" Click="StopWifiSharingButton_Click" Style="{StaticResource FunctionButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource StoppingShare}"/>
+                    <TextBlock>停止網路分享</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Name="StartWifiSharingButton" Click="StartWifiSharingButton_Click" Style="{StaticResource FunctionButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource Share}"/>
+                    <TextBlock>開始網路分享</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
 </UserControl>
