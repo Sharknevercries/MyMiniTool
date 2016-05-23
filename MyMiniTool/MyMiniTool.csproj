@@ -60,9 +60,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoShutdown.xaml.cs">
+      <DependentUpon>AutoShutdown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WifiSharing.xaml.cs">
       <DependentUpon>WifiSharing.xaml</DependentUpon>
     </Compile>
+    <Page Include="AutoShutdown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +125,10 @@
     <Resource Include="Resource\Image\Online-32.png" />
     <Resource Include="Resource\Image\Save-32.png" />
     <Resource Include="Resource\Image\Wi-Fi-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Image\Cancel-32.png" />
+    <Resource Include="Resource\Image\Shutdown-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,15 +25,23 @@ namespace MyMiniTool
             InitializeComponent();
 
             WifiSharing.SetStatusMessage += SetStatusTextBlock;
+            AutoShutdown.SetStatusMessage += SetStatusTextBlock;
         }
 
         private void SetStatusTextBlock(object sender, EventArgs e)
         {
-            StatusMessageTextBlock.Text = (e as WifiSharing.SetStatusMessageEventArgs).Message;
+            StatusMessageTextBlock.Text = (e as StatusMessageEventArgs).Message;
         }
 
-        private void WifiSharing_Loaded(object sender, RoutedEventArgs e)
+        public class StatusMessageEventArgs : EventArgs
         {
+            public string Message;
+
+            public StatusMessageEventArgs(string message)
+            {
+                this.Message = message;
+            }
         }
+
     }
 }

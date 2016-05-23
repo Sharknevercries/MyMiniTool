@@ -119,17 +119,9 @@ namespace MyMiniTool
 
         private void SetStatusMessageText(string text)
         {
-            SetStatusMessage?.Invoke(this, new SetStatusMessageEventArgs(text));
+            SetStatusMessage?.Invoke(this, new MainWindow.StatusMessageEventArgs(text));
         }
 
-        public class SetStatusMessageEventArgs : EventArgs
-        {
-            public string Message;
-
-            public SetStatusMessageEventArgs(string message)
-            {
-                this.Message = message;
-            }
-        }
+        
     }
 }

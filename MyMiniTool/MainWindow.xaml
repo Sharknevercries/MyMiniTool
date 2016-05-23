@@ -12,9 +12,12 @@
     </Window.Resources>
 
     <StackPanel>
-        <TabControl Height="315">
+        <TabControl Height="315" FontSize="24">
             <TabItem Header="網路分享">
                 <local:WifiSharing x:Name="WifiSharing"/>
+            </TabItem>
+            <TabItem Header="自動關機">
+                <local:AutoShutdown x:Name="AutoShutdown"/>
             </TabItem>
         </TabControl>
         <StatusBar Height="30" DockPanel.Dock="Bottom">
